@@ -16,8 +16,6 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  // the string of "intro_page" is representing the IntroPage() widget
-  // the string of "questions_page" is representing the QuizPage() widget
   var stringOfCurrentPage = "intro_page";
 
   void switchCurrentScreen() {
@@ -26,15 +24,13 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  // selectedAnswers variable will store the answers that selected by the users
-
-  List<String> selectedAnswers = []; 
+  List<String> selectedAnswers = [];
 
   void getSelectedAnswers(String selectedAnswer) {
     selectedAnswers.add(selectedAnswer);
 
     if (selectedAnswers.length == questions.length) {
-      setState(() { 
+      setState(() {
         stringOfCurrentPage = "results_page";
       });
     }
@@ -49,15 +45,17 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
-    // currentPage variable will store widgets, and each widget is for different pages
     Widget currentPage = IntroPage(switchCurrentScreen);
 
-    if (stringOfCurrentPage == 'quiz_page') {
-      // when user selected an answer
-        // getSelectedAnswer will execute
-      currentPage = QuizPage(onSelectedAnswers: getSelectedAnswers);
-    } else if (stringOfCurrentPage == 'results_page') {
-      currentPage = ResultsPage(selectedAnswersOfUsers: selectedAnswers, resetQuiz: resetQuiz,);
+    switch (stringOfCurrentPage) {
+      case 'quiz_page':
+        currentPage = QuizPage(onSelectedAnswers: getSelectedAnswers);
+        break;
+
+      case 'results_page':
+        currentPage = ResultsPage(
+            selectedAnswersOfUsers: selectedAnswers, resetQuiz: resetQuiz);
+        break;
     }
 
     return MaterialApp(

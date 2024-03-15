@@ -27,7 +27,7 @@ class IntroPage extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 60),
-            /* Start Quiz Button */
+            // start quiz button
             OutlinedButton(
               onPressed: switchCurrentScreen,
               style: OutlinedButton.styleFrom(
