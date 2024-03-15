@@ -44,10 +44,8 @@ class ResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final summaryData = getSummaryData();
     final numberOfTotalQuestions = questions.length;
-    final numberOfCorrectQuestions = summaryData.where((data) {
-      return data["user_answer"] == data["correct_answer"];
-    }).length;
-
+    final numberOfCorrectQuestions = summaryData.where((data) => data["user_answer"] == data["correct_answer"]).length;
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Center(
